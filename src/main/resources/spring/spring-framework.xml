@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+    <!-- 此配置文件为框架级，其中配置项请勿更改 -->
+
+    <!-- dao start -->
+    <context:property-placeholder location="classpath:config.properties" ignore-unresolvable="true"/>
+    <!--<context:property-placeholder location="/WEB-INF/classes/config.properties" />-->
+    <!--<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">-->
+    <!--<property name="jndiName">-->
+    <!--<value>${jndi_name}</value>-->
+    <!--</property>-->
+    <!--</bean>-->
+    <bean id="dataSourceProperties" class="com.jd.framework.jdbc.PropertiesEncryptFactoryBean">  
+        <property name="properties">  
+            <props>  
+                <prop key="user">${db.username}</prop>  
+                <prop key="password">${db.password}</prop>  
+            </props>  
+        </property>  
+    </bean> 
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${db.driver}"/>
+        <property name="jdbcUrl" value="${db.url}"/>
+        <!-- 当连接池用完时客户端调用getConnection()后等待获取新连接的时间，
+			超时后将抛出SQLException，如设为0则无限期等待。单位毫秒，默认为0； -->
+        <property name="checkoutTimeout" value="${db.c3p0.checkoutTimeout}"/>
+        <!-- 始化时创建的连接数，应在minPoolSize与maxPoolSize之间取值。默认为3；-->
+        <property name="initialPoolSize" value="${db.c3p0.initialPoolSize}"/>
+        <!-- 自动侦察各个连接状态的时间间隔(毫秒) -->
+        <property name="idleConnectionTestPeriod" value="${db.c3p0.idleConnectionTestPeriod}"/>
+        <!-- 最大空闲时间(毫秒)，超过空闲时间的连接将被丢弃。为0或负数则永不丢弃。默认为0； -->
+        <property name="maxIdleTime" value="${db.c3p0.maxIdleTime}"/>
+        <!-- 接池中保留的最大连接数。默认为15-->
+        <property name="maxPoolSize" value="${db.c3p0.maxPoolSize}"/>
+        <property name="minPoolSize" value="${db.c3p0.minPoolSize}"/>
+        <!--当连接池中的连接用完时，C3P0一次性创建新连接的数目-->
+        <property name="acquireIncrement" value="${db.c3p0.acquireIncrement}"/>
+        <!--C3P0是异步操作的，缓慢的JDBC操作通过帮助进程完成。扩展这些操作可以有效的提升性能，
+			通过多线程实现多个操作同时被执行。默认为3； -->
+        <property name="numHelperThreads" value="${db.c3p0.numHelperThreads}"/>
+        <!-- 是否测试连接 -->
+        <property name="testConnectionOnCheckin" value="${db.c3p0.testConnectionOnCheckin}"/>
+        <!-- 连接测试语句 -->
+        <property name="preferredTestQuery" value="${db.c3p0.preferredTestQuery}"/>
+        <property name="properties" ref="dataSourceProperties"/>
+    </bean>
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <!-- 可以同时支持注解和XML -->
+        <!--
+        <property name="mappingResources">
+            <list>
+                <value>com/apexedu/sys/entity/TDtbdCreatetable.hbm.xml</value>
+                <value>com/apexedu/sys/entity/TDtbdCreatetableFieldinfo.hbm.xml</value>
+            </list>
+        </property>
+         -->
+        <!-- 实体类扫描路径 -->
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <list>
+                <value>com.jd.*.*</value>
+                <value>com.jd.traffic.pay.payService.platform.model</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">
+                    ${db.hibernate.dialect}
+                </prop>
+                <prop key="hibernate.connection.autoReconnect">true</prop>
+                <prop key="hibernate.connection.autoReconnectForPools">true</prop>
+                <prop key="hibernate.connection.is-connection-validation-required">true</prop>
+                <prop key="hibernate.show_sql">${db.hibernate.show_sql}</prop>
+                <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+                <prop key="hibernate.connection.autocommit">true</prop>
+                <!--              <prop key="hibernate.query.substitutions">true 1,false 0</prop>-->
+                <!--<prop key="hibernate.hbm2ddl.auto">none</prop>-->
+                <!--                 <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop> -->
+                <prop key="hibernate.cache.use_second_level_cache">false</prop>
+                <prop key="hibernate.cache.use_query_cache">false</prop>
+                <prop key="hibernate.jdbc.batch_size">50</prop>
+                <!--<prop key="hibernate.connection.provider_class">org.hibernate.connection.ProxoolConnectionProvider</prop>-->
+                <!--<prop key="hibernate.proxool.xml">proxool.xml</prop>-->
+                <!--<prop key="hibernate.proxool.pool_alias">DataSource</prop>-->
+                <!--<prop key="hibernate.connection.url">jdbc:oracle:thin:@10.0.0.7:1521:orcl007</prop>-->
+                <!--<prop key="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</prop>-->
+                <!--<prop key="hibernate.connection.username">usr_localpig</prop>-->
+                <!--<prop key="hibernate.connection.password">usr_localpig</prop>-->
+            </props>
+        </property>
+    </bean>
+
+    <!-- redis和cache -->
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxActive" value="${redis.maxActive}"/>
+        <property name="maxIdle" value="${redis.maxIdle}"/>
+        <property name="maxWait" value="${redis.maxWait}"/>
+        <property name="testOnBorrow" value="${redis.testOnBorrow}"/>
+    </bean>
+    <bean id="connectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+          p:host-name="${redis.host}" p:port="${redis.port}" p:database="${redis.database}" p:password="${redis.pass}"
+          p:pool-config-ref="jedisPoolConfig"/>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+    </bean>
+
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate"
+          scope="singleton">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <!-- 一定要保留，DBUtil类更新数据库用这个实现，可以支持事务回滚 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+          scope="singleton">
+        <property name="sessionFactory">
+            <ref local="sessionFactory"/>
+        </property>
+        <!-- dataSource一定要保留，DBUtil类更新数据库用这个实现，可以支持事务回滚 -->
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+    </bean>
+
+    <bean id="baseDaoImpl" class="com.jd.framework.dao.impl.BaseDaoServiceImpl"
+          scope="singleton">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="baseDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="com.jd.framework.dao.BaseDao"/>
+        <property name="target" ref="baseDaoImpl"/>
+    </bean>
+    <!-- dao end -->
+
+    <bean id="pager" class="com.jd.framework.util.Pager" scope="prototype"
+          lazy-init="true"/>
+
+    <bean id="messageServiceImpl" class="com.jd.message.MessageServiceImpl" scope="singleton">
+        <property name="baseDao" ref="baseDao"></property>
+    </bean>
+
+    <bean id="springUtils" class="com.jd.framework.util.SpringUtils"/>
+
+    <!-- 下面是事务抽象bean，需要使用事务控制的bean可以继承此bean（作用于service层） -->
+    <bean id="txProxyTemplate" abstract="true"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="list">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="load">PROPAGATION_REQUIRED,readOnly</prop>
+                <prop key="save*">PROPAGATION_REQUIRED</prop>
+                <prop key="update*">PROPAGATION_REQUIRED</prop>
+                <prop key="remove*">PROPAGATION_REQUIRED</prop>
+                <prop key="delete*">PROPAGATION_REQUIRED</prop>
+                <prop key="changeState">PROPAGATION_REQUIRED</prop>
+                <prop key="*BySTA">PROPAGATION_REQUIRED</prop>
+                <prop key="shtg">PROPAGATION_REQUIRED</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 自动搜索spring注解@Service、@Component标注的类；注意@Controller由springmvc-servlet.xml加载，不然如果在web.xml里声明加载springmvc-servlet.xml，导致Controller加载两份实例 -->
+    <context:component-scan base-package="com.jd.*.service"/>
+    <context:component-scan base-package="com.jd.*.action"/>
+
+    <!-- 要注解支持事务，必须加这句声明 -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    <!-- 支持注解方式的定时器开关 -->
+    <task:annotation-driven/>
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource"
+          p:basename="globalMessages">
+        <property name="useCodeAsDefaultMessage" value="true"/>
+    </bean>
+   	
+</beans>

@@ -1,0 +1,69 @@
+/* CSS Document */
+@charset "utf-8";/* reset */
+html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th{text-align:left;font-weight:normal;}
+html,body,fieldset,img,iframe,abbr{border:0;}
+i,cite,em,var,address,dfn{font-style:normal;}
+[hidefocus],summary{outline:0;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6,small{font-size:14px;}
+sup,sub{font-size:83%;}
+pre,code,kbd,samp{font-family:inherit;}
+q:before,q:after{content:none;}
+textarea{overflow:auto;resize:none;}
+label,summary{cursor:default;}
+a,button{cursor:pointer;}
+h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
+del,ins,u,s,a,a:hover{text-decoration:none;color:#b01111;}
+body,textarea,input,button,select,keygen,legend{font:14px/24px arial,\5b8b\4f53;color:#555555;outline:0;vertical-align: middle;font-family:"Microsoft YaHei";}
+body{background-color:#e4e1dc;font-family:"Microsoft YaHei";}
+img{vertical-align:middle;}
+a{color:red;}
+a:hover{text-decoration:underline;}
+.middle{width:1100px;margin:0 auto;}
+.suojin{text-indent:2em;}
+.border-padding{border:1px solid #d1d1d1;padding:1px;}
+.red{color:#b01111;}
+/*---------------基础样式---------------*/
+
+#c-jr{width:980px;height:500px;position:absolute;z-index:10;top:0;left:50%;margin:50px 0 0 -490px;}
+#c-jr .c-jr-top{width:700px;margin:0 auto;}
+#c-jr .c-jr-top dl{background:url(../images/c_jr_dn_01.png) no-repeat top center;padding-top:230px;}
+#c-jr .c-jr-top dl dd{font-size:20px;color:#b01111;height:50px;line-height:50px;text-align:center;}
+#c-jr .c-jr-top dl dt{width:410px;margin:0 auto;background-color:#b01111;color:white;text-align:center;font-size:16px;height:36px;line-height:36px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;}
+#c-jr .c-jr-con{overflow:hidden;width:980px;margin:30px auto 0 auto;background:url(../images/c_jr_ico_360tip.png) no-repeat right  20px;}
+#c-jr .c-jr-con dl{float:left;width:120px;height:150px;margin:0 20px;display:inline;}
+#c-jr .c-jr-con dl dd{text-align:center;height:104px;}
+#c-jr .c-jr-con dl dd a{}
+#c-jr .c-jr-con dl dd img{display:inline;}
+#c-jr .c-jr-con dl dt{width:120px;height:32px;line-height:32px;margin-top:10px;text-align:center;}
+#c-jr .c-jr-con dl dt a{color:white;display:block;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;}
+#c-jr .c-jr-con dl dt a:hover{text-decoration:none;}
+
+#c-jr .c-jr-con .dl1 dt a{background-color:#87c308;}
+#c-jr .c-jr-con .dl1 dt a:hover{background-color:#79b101;}
+#c-jr .c-jr-con .dl2 dt a{background-color:#df5825;}
+#c-jr .c-jr-con .dl2 dt  a:hover{background-color:#cf4713;}
+#c-jr .c-jr-con .dl3 dt a{background-color:#26a6d1;}
+#c-jr .c-jr-con .dl3 dt  a:hover{background-color:#1594bf;}
+#c-jr .c-jr-con .dl4 dt a{background-color:#34cd62;}
+#c-jr .c-jr-con .dl4 dt  a:hover{background-color:#26bd53;}
+
+
+.c-jr-left{width:40%;height:623px;position:absolute;z-index:3;top:0;left:0;background:url(../images/c_jr_bj01.png) no-repeat right;}
+.c-jr-righ{width:60%;height:900px;position:absolute;z-index:4;bottom:0;right:0;background:url(../images/c_jr_bj02.png) no-repeat left;}
+
+
+
+
+
+
+
+
+
+
+
+
+

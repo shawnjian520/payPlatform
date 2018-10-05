@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" xml:lang="en" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+    <meta name="google-site-verification" content="LgblCrocw4d4ccdOkob0kzt3Ing7mMy1dKTtLoUb-2s"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="keywords"
+          content="how crop images, how zoom images, crop image,CropZooom, rotate image, zoom image, jquery plugin, crop plugin, zoom plugin, rotation, croppping, zooming"/>
+    <meta name="description"
+          content="CropZoom is a plugin that let you select, rotate and zoom an image to make a crop. This is free and ready to use."/>
+    <title>CropZoom another Jquery Plugin</title>
+
+    <link href="css/jquery-ui-1.7.2.custom.css" rel="Stylesheet" type="text/css"/>
+    <link href="css/jquery.cropzoom.css" rel="Stylesheet" type="text/css"/>
+    <script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.14.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cropzoom.js"></script>
+    <!--<script type="text/javascript" src="http://cropzoom.googlecode.com/svn/trunk/plugin/jquery.cropzoom.js"></script>-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var cropzoom = $('#crop_container').cropzoom({
+                width: 300,
+                height: 300,
+                bgColor: '#CCC',
+                enableRotation: false,
+                enableZoom: true,
+                zoomSteps: 10,
+                rotationSteps: 10,
+                selector: {
+                    w: 100,
+                    h: 100,
+                    aspectRatio: true,
+                    showPositionsOnDrag: false,
+                    showDimetionsOnDrag: false,
+                    centered: false,
+                    borderColor: 'blue',
+                    borderColorHover: 'red'
+                },
+                image: {
+                    source: 'http://192.168.0.145:9080/traffic/upload/file_zs/20160924/16092413422024810004.png',
+                    width: 1800,
+                    height: 1800,
+                    minZoom: 100,           //最小允许缩放比例
+                    maxZoom: 150           //最大允许缩放比例
+                }
+            });
+            cropzoom.setSelector(45, 45, 100, 100, true);
+            $('#crop').click(function () {
+                cropzoom.send('http://192.168.0.145:9080/traffic/croppre', 'POST', {
+                    path: '/Users/tengchong/Development/upload/file_zs/20160924/16092413422024810004.png'
+                }, function (data) {
+                    console.log(data);
+                    $('#test').attr('src', 'http://192.168.0.145:9080/pros' + data.url);
+                });
+            });
+        })
+    </script>
+</head>
+<body>
+<div class="boxes">
+    <div id="crop_container"></div>
+</div>
+<img id="test">
+<span class="button-wrapper" id="crop">
+    <a class="button" href="javascript:void(0)">Crop</a>
+</span>
+</body>
+</html>

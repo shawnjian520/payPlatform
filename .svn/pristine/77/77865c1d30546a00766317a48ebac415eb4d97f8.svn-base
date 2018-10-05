@@ -1,0 +1,43 @@
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>2.0</jsp-version>
+    <short-name>jd TLD</short-name>
+    <tag>
+        <name>lable</name>
+        <tag-class>com.jd.util.tag.Lable</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>col</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>id</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>lable</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>className</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+    <tag>
+        <name>panel</name>
+        <tag-class>com.jd.util.tag.Panel</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>title</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>className</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>id</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+</taglib>

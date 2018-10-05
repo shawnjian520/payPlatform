@@ -1,0 +1,146 @@
+{
+  "bootstrap" : {
+    "header": "../../common/plugins/css/bootstrap.jsp",
+    "footer": "../../common/plugins/js/bootstrap.jsp"
+  },
+  "animate" : {
+    "header": "../../common/plugins/css/animate.jsp",
+    "footer": ""
+  },
+  "blockUI" : {
+    "header": "",
+    "footer": "../../common/plugins/js/blockUI.jsp"
+  },
+  "bootbox" : {
+    "header": "",
+    "footer": "../../common/plugins/js/bootbox.jsp"
+  },
+  "bootstrap-datetimepicker" : {
+    "header": "../../common/plugins/css/bootstrap-datetimepicker.jsp",
+    "footer": "../../common/plugins/js/bootstrap-datetimepicker.jsp"
+  },
+  "cropper" : {
+    "header": "../../common/plugins/css/cropper.jsp",
+    "footer": "../../common/plugins/js/cropper.jsp"
+  },
+  "frame" : {
+    "header": "../../common/plugins/css/frame.jsp",
+    "footer": "../../common/plugins/js/frame.jsp"
+  },
+  "highcharts" : {
+    "header": "../../common/plugins/css/highcharts.jsp",
+    "footer": "../../common/plugins/js/highcharts.jsp"
+  },
+  "iCheck" : {
+    "header": "../../common/plugins/css/iCheck.jsp",
+    "footer": ""
+  },
+  "jquery.appear" : {
+    "header": "",
+    "footer": "../../common/plugins/js/jquery.appear.jsp"
+  },
+  "jquery.autosize" : {
+    "header": "",
+    "footer": "../../common/plugins/js/jquery.autosize.jsp"
+  },
+  "jquery.cookie" : {
+    "header": "",
+    "footer": "../../common/plugins/js/jquery.cookie.jsp"
+  },
+  "jquery.mockjax" : {
+    "header": "",
+    "footer": "../../common/plugins/js/jquery.mockjax.jsp"
+  },
+  "jquery.raty" : {
+    "header": "../../common/plugins/css/jquery.raty.jsp",
+    "footer": "../../common/plugins/js/jquery.raty.jsp"
+  },
+  "jquery.scrollTo" : {
+    "header": "",
+    "footer": "../../common/plugins/js/jquery.scrollTo.jsp"
+  },
+  "jquery.smart.wizard" : {
+    "header": "",
+    "footer": "../../common/plugins/js/jquery.smart.wizard.jsp"
+  },
+  "jquery.touchSwipe" : {
+    "header": "",
+    "footer": "../../common/plugins/js/jquery.touchSwipe.jsp"
+  },
+  "jquery.truncate" : {
+    "header": "",
+    "footer": "../../common/plugins/js/jquery.truncate.jsp"
+  },
+  "jquery.ztree" : {
+    "header": "../../common/plugins/css/jquery.ztree.jsp",
+    "footer": "../../common/plugins/js/jquery.ztree.jsp"
+  },
+  "jquery-ui" : {
+    "header": "",
+    "footer": "../../common/plugins/js/jquery-ui.jsp"
+  },
+  "jQuery-Validation-Engine" : {
+    "header": "../../common/plugins/css/jQuery-Validation-Engine.jsp",
+    "footer": "../../common/plugins/js/jQuery-Validation-Engine.jsp"
+  },
+  "moment" : {
+    "header": "",
+    "footer": "../../common/plugins/js/moment.jsp"
+  },
+  "perfect-scrollbar" : {
+    "header": "../../common/plugins/css/perfect-scrollbar.jsp",
+    "footer": "../../common/plugins/js/perfect-scrollbar.jsp"
+  },
+  "scrollToFixed" : {
+    "header": "",
+    "footer": "../../common/plugins/js/scrollToFixed.jsp"
+  },
+  "select2" : {
+    "header": "../../common/plugins/css/select2.jsp",
+    "footer": "../../common/plugins/js/select2.jsp"
+  },
+  "summernote" : {
+    "header": "../../common/plugins/css/summernote.jsp",
+    "footer": "../../common/plugins/js/summernote.jsp"
+  },
+  "sweetalert" : {
+    "header": "../../common/plugins/css/sweetalert.jsp",
+    "footer": "../../common/plugins/js/sweetalert.jsp"
+  },
+  "toastr" : {
+    "header": "../../common/plugins/css/toastr.jsp",
+    "footer": "../../common/plugins/js/toastr.jsp"
+  },
+  "touchSwipe" : {
+    "header": "",
+    "footer": "../../common/plugins/js/touchSwipe.jsp"
+  },
+  "ueditor" : {
+    "header": "",
+    "footer": "../../common/plugins/js/ueditor.jsp"
+  },
+  "uploadify" : {
+    "header": "../../common/plugins/css/uploadify.jsp",
+    "footer": "../../common/plugins/js/uploadify.jsp"
+  },
+  "viewer" : {
+    "header": "../../common/plugins/css/viewer.jsp",
+    "footer": "../../common/plugins/js/viewer.jsp"
+  },
+  "font-awesome" : {
+    "header": "../../common/plugins/css/font-awesome.jsp",
+    "footer": ""
+  },
+  "custom" : {
+    "header": "../../common/plugins/css/custom.jsp",
+    "footer": "../../common/plugins/js/custom.jsp"
+  },
+  "jquery.velocity" : {
+    "header": "",
+    "footer": "../../common/plugins/js/jquery.velocity.jsp"
+  },
+  "bootstrap-select" : {
+    "header": "../../common/plugins/css/bootstrap-select.jsp",
+    "footer": "../../common/plugins/js/bootstrap-select.jsp"
+  }
+}

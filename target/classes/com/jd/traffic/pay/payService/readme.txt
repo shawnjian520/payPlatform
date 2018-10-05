@@ -1,0 +1,1 @@
+pay-service:支付逻辑， 微信支付，支付宝支付,调用样例均在 pay-api的test目录和pay-caller工程

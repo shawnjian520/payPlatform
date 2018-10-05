@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+            http://www.springframework.org/schema/mvc
+            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+    <!-- 自动搜索spring注解@Controller标注的类 -->
+    <context:component-scan base-package="com.jd.*"/>
+    
+    <context:component-scan base-package="com.jd.traffic.pay.web"/>
+    <context:component-scan base-package="com.jd.traffic.pay.payService.platform.dao.service.*"/>
+	<context:component-scan base-package="com.jd.traffic.pay.payService.platform.service.*"/>
+	<context:component-scan base-package="com.jd.traffic.pay.payApi.controller.*"/>
+	<context:component-scan base-package="com.jd.traffic.pay.payCaller.controller"/>
+	<context:component-scan base-package="com.jd.traffic.pay.payService.alipay.service"/>
+	<context:component-scan base-package="com.jd.traffic.pay.payService.api.service"/>
+	<context:component-scan base-package="com.jd.traffic.pay.payService.unionPay.service"/>
+	<context:component-scan base-package="com.jd.traffic.pay.payService.wechat.annotation"/>
+	<context:component-scan base-package="com.jd.traffic.pay.payService.wechat.model"/>
+	<context:component-scan base-package="com.jd.traffic.pay.payService.wechat.response"/>
+	<context:component-scan base-package="com.jd.traffic.pay.payService.wechat.service"/>  <!---->
+    <!-- 针对类、方法级别的拦截器 -->
+    <mvc:interceptors>
+        <!-- 拦截器:登录验证-->
+        <mvc:interceptor>
+            <mvc:mapping path="/biz/**"/>
+            <mvc:mapping path="/id/**"/>
+            <mvc:mapping path="/system/**"/>
+            <bean class="com.jd.springinterceptor.CheckLoginInterceptor4springmvc"></bean>
+        </mvc:interceptor>
+        <!-- 拦截器:url-->
+        <mvc:interceptor>
+            <mvc:mapping path="/biz/**"/>
+            <mvc:mapping path="/id/**"/>
+            <mvc:mapping path="/system/**"/>
+            <bean class="com.jd.springinterceptor.CheckLoginInterceptor4url"></bean>
+        </mvc:interceptor>
+        <!-- 拦截器:删除方法sql注入-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**/remove"/>
+            <mvc:mapping path="/**/removeAll"/>
+            <bean class="com.jd.springinterceptor.AntiSqlInjectionfilter"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <mvc:annotation-driven/>
+
+    <!-- @ResponseBody注解 中文乱码编码问题解决 -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="supportedMediaTypes">
+                        <list>
+                            <value>text/plain;charset=UTF-8</value>
+                            <value>application/json;charset=UTF-8</value>
+                        </list>
+                    </property>
+                </bean>
+            </list>
+        </property>
+        <property name="webBindingInitializer">
+            <bean class="com.jd.support.spring.ReservationBindingInitializer"/>
+        </property>
+    </bean>
+
+    <!-- 用Controller类上的注解配置URL映射 -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="order" value="1"/>
+    </bean>
+
+    <!-- 用Controller类名匹配url，如：/s/{className}/{methodName} -->
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+        <property name="order" value="2"/>
+        <property name="caseSensitive" value="true"/>
+        <!-- 只把Controller类名称的首字母小写，其他的保持原样进行请求路径映射 -->
+        <!--<property name="pathPrefix" value="/uc"/>-->
+        <!-- 起始路径，url中会取后名的包名做uri前缀 -->
+        <property name="basePackage" value="com.jd.system.controller"/>
+    </bean>
+    <!-- 多视图,order越低优先级越高 -->
+    <bean id="jspViewResolver_business" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="com.jd.system.controller.HtmlResourceView"/>
+        <property name="prefix" value="/WEB-INF/view/jsp/business/"/>
+        <property name="suffix" value=""/>
+        <property name="order">
+            <value>0</value>
+        </property>
+    </bean>
+    <bean id="jspViewResolver_identity" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="com.jd.system.controller.HtmlResourceView"/>
+        <property name="prefix" value="/WEB-INF/view/jsp/identity/"/>
+        <property name="suffix" value=""/>
+        <property name="order">
+            <value>1</value>
+        </property>
+    </bean>
+    <bean id="jspViewResolver_system" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="com.jd.system.controller.HtmlResourceView"/>
+        <property name="prefix" value="/WEB-INF/view/jsp/system/"/>
+        <property name="suffix" value=""/>
+        <property name="order">
+            <value>2</value>
+        </property>
+    </bean>
+
+    <bean id="exceptionResolver"
+          class="com.jd.springinterceptor.ExceptionInterceptor">
+        <!-- 设置日志输出级别，不定义则默认不输出警告等错误日志信息 -->
+        <!--<property name="warnLogCategory" value="ERROR"></property>-->
+        <property name="defaultErrorView" value="/common/error.jsp"/>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes. below set 100M -->
+        <property name="maxUploadSize" value="102400000"/>
+    </bean>
+</beans>

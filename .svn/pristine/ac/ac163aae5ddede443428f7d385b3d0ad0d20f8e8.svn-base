@@ -1,0 +1,35 @@
+/* ----------------------------------------------------------------------
+>>> TABLE OF CONTENT
+-------------------------------------------------------------------------
+1 - 地图
+/* ---------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------- */
+/*  地图
+/* ---------------------------------------------------------------------- */
+.map-table th{
+    text-align: right;
+    background-color: #f1f4f5;
+}
+.flag-legend{
+    display: block;
+    position: absolute;
+    right: 19px;
+    z-index: 1050;
+    opacity: 0.8;
+    padding: 20px;
+    list-style: none;
+    background-color: #fff;
+    border: 1px solid #aaa;
+}
+.flag-legend li{
+    padding: 0 10px;
+    float: left;
+}
+.normal-state {
+    color: #006633;
+}
+.fault-state {
+    color: #ff3333;
+}
+

@@ -1,0 +1,12 @@
+.panel{
+	border: 1px solid #ccc;
+}
+.dataTables_wrapper table th.sort-asc{
+	background-image: url("../images/sort-asc-ie.png");
+}
+.dataTables_wrapper table th.sort-desc{
+	background-image: url("../images/sort-desc-ie.png");
+}
+.dataTables_wrapper table th.sort-null{
+	background-image: url("../images/sort-null-ie.png");
+}

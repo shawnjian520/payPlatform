@@ -1,0 +1,18 @@
+/*=========== 兼容IE8/9下checkbox/raido文字样式;如项目使用的icheck请注释 ===========*/
+.radio-inline,
+.checkbox-inline {
+	line-height: 26px;
+}
+.radio-inline .mgr,
+.checkbox-inline .mgc {
+	margin-top: 5px !important;
+}
+.avatar-wrapper img{
+	max-width: none;
+}
+.avatar-wrapper .jcrop-holder.jcrop-light{
+	margin: 0 auto;
+}
+.checkbox-table{
+	padding-left: 25px;
+}

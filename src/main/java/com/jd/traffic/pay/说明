@@ -1,0 +1,41 @@
+支付包相关参数:
+# 支付宝网关名、partnerId和appId
+open_api_domain = https://openapi.alipay.com/gateway.do
+mcloud_api_domain = http://mcloudmonitor.com/gateway.do
+pid = 2088421256182115
+appid = 2016092701980593
+
+# RSA私钥、公钥和支付宝公钥
+private_key = MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMjoRzlenH8sPksJOONxNEBLkxUM8vnCYn1n2b5zY6hX8K/+b16oBwpsX5A2oCG8tDXL7dc+VI7qngh1I82ryzFhT41YcYomiHWZ+/JyWG9kB7wVCl5odm8axA38qDkCGhiqE84+D2AKUFZ+0MhXuq5iihbLzaCCqFJY4PWYUK9NAgMBAAECgYAk1rqgoWGOzB0MAz/kLJDJLVJl7L7s3yDSH+XET0I5zw46JyxirerElYScW/fW19QvfRo6eppkrk6V/Gy5PMQAEckNx/zKKcznKyAAY0xWnehAOwF5Q5TD3iM1QzV4BKu3jXQNwP3fgh11G5HVZE5uttkQ5H3HAPpLs5ZhMirlnQJBAOdwvwYgj5spyh51454hcI7u6WPAy4BjIHcC+LbS8VSfW0GuXWwH/U3NimHxBqSYlhuHBReMXKydGtr9/JGM3U8CQQDeOhPweuZr8jzKbUrwqQ3o6WY2Hm3haCtdHIH5UWMn3yh+wGwMLFCQpgG2AJtfVI/CxEXijcEKOuveN74cjlqjAkEAoAfxzkbNhbjLrWxOy5TLw8mnT/aLwGbKmABSAfiyLpVSAISUzJJpsFajjT2gHkfz42zlNHc1zZWEcFCXR/1jOQJAFUR5pAofAzWrm7PZ+C41ppSvs342BdxySfbweWvQkYBJ39eKf5++FhnNEB3+wKDXIUynY4ctck0xRZMQHquBAQJBALysHcpplvrcshDcoFcH8YTxTubCCl7A66eF4zegTlO6GdAfcmB0t9vPUWr/kQHe/eSFgTRCyx/unZBd7rh14og=
+public_key = MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDI6Ec5Xpx/LD5LCTjjcTRAS5MVDPL5wmJ9Z9m+c2OoV/Cv/m9eqAcKbF+QNqAhvLQ1y+3XPlSO6p4IdSPNq8sxYU+NWHGKJoh1mfvyclhvZAe8FQpeaHZvGsQN/Kg5AhoYqhPOPg9gClBWftDIV7quYooWy82ggqhSWOD1mFCvTQIDAQAB
+alipay_public_key = MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB
+
+# 当面付最大查询次数和查询间隔（毫秒）
+max_query_retry = 5
+query_duration = 5000
+
+# 当面付最大撤销次数和撤销间隔（毫秒）
+max_cancel_retry = 3
+cancel_duration = 2000
+
+# 交易保障线程第一次调度延迟和调度间隔（秒）
+heartbeat_delay = 5
+heartbeat_duration = 900
+
+
+微信支付相关参数
+######微信####
+wx_notifyUrl=/wechat/notify_open
+#微信key
+wx_key=5796431fheucg5546HVjdhf54862MNTp
+#微信appId
+wx_appId=wx45891a468cf0b9ba
+#微信商户ID
+wx_merchantId=1399214102
+#是否将微信支付结果上报
+hantianxia_report=1
+#微信支付上报给汉天下IP
+hantianxia_ip=222.85.139.103
+#微信支付上报给汉天下port
+hantianxia_port=8087
+######微信####
